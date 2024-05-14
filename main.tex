@@ -1,0 +1,63 @@
+% !Mode:: "TeX:UTF-8"
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% 宁波大学本科生毕业论文 LaTex 模板 V1.0, 2024/05/01
+%% 作者: 宁波大学机械学院，周吕文, zhoulvwen@nbu.edu.cn
+%% 
+%% 关注微信 #公众号:数学模型，对话框内回复“宁大模板”下载最新版本
+%%
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% 编译命令：xelatex -> bibtex -> xelatex -> xelatex
+%%
+%% 本模版将论文的各部分切割成多个 .tex 文件放在 content 文件
+%% 夹中，并用 \input 命令载入到主文档 main.tex 中。
+%% 
+%% 论文中所用到的图片都放在 figures 文件夹中
+%% 
+%% 附录中所用到的代码都放在 codes 文件夹中
+%%
+%% 参考文献按格式整理在 refs.bib 文本文件中
+%%
+%% 以下宏包已加载：geometry, graphicx, fancyhdr, setspace, fontspec, xeCJK, 
+%%                tikz, mfirstuc, longtable, caption, subcaption, multirow, 
+%%                threeparttable,booktabs, footnotebackref, natbib, listings,
+%%                amsmath, amsfonts, amssymb, bm
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\documentclass{NBUThesis}
+
+\title{宁波大学本科生毕业论文 \LaTeX{} 模板}
+\etitle{Undergraduate Thesis \LaTeX{} Template for Ningbo University}
+\author{大模头}
+\supervisor{周吕文}
+\college{机械工程与力学学院}
+\major{工程力学}
+\class{工程力学 201 班}
+\studentID{20240729}
+\date{2024 年 7 月 29 日}
+
+
+\begin{document}
+\maketitle        % 生成封面
+\frontmatter
+\commitment       % 生成承诺页
+\tableofcontents  % 生成目录页
+
+% 导入中英文摘要
+\input{content/abstract}
+
+\mainmatter       % 正文开始
+
+% 正文章节
+\input{content/content}
+
+% 参考文献
+\bibliographystyle{nbuthesis}
+\bibliography{refs} 
+
+% 致谢
+\input{content/acknowledgements}
+
+% 附录
+\appendix
+\input{content/appendix}
+\end{document}
