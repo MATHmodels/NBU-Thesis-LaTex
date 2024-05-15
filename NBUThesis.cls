@@ -6,110 +6,14 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{NBUThesis}[2024/03/27 Thesis Template of NBU]
 \LoadClass[a4paper,zihao=-4,oneside,openany]{ctexbook}
-\RequirePackage{geometry}
-\geometry{a4paper,left=2.5cm,right=2.0cm,top=2.5cm,bottom=2.0cm}
-\setlength{\headheight}{16pt}
-\setlength{\headsep}{22pt}
-\linespread{1.6}
 
-\RequirePackage{graphicx}
-\graphicspath{{figures/}}
-\RequirePackage{fancyhdr}
-\RequirePackage{setspace}
-\RequirePackage{fontspec}
-\RequirePackage{xeCJK}
-
-\newcommand{\supervisor}[1]{\gdef\@supervisor{#1}}
-\newcommand{\etitle}[1]{\gdef\@etitle{#1}}
-\newcommand{\college}[1]{\gdef\@college{#1}}
-\newcommand{\major}[1]{\gdef\@major{#1}}
-\newcommand{\class}[1]{\gdef\@class{#1}}
-\newcommand{\studentID}[1]{\gdef\@studentID{#1}}
-
-\def\theetitle{\@etitle}
-\def\thetitle{\@title}
-\def\theauthor{\@author}
-\def\thecollege{\@college}
-
-% -------------------------  设置字体  -------------------------------------------
-% 设置宋体、黑体、楷体，以支持伪加粗，伪斜体
-\newCJKfontfamily[zhkaiti]\kaiti[Path=fonts/,BoldFont =FZCKJW.TTF]{FZHTK.TTF}
-% \setCJKmainfont{SimSun}[AutoFakeBold=2.5,AutoFakeSlant]
-% \setCJKsansfont{SimHei}[AutoFakeBold,AutoFakeSlant]
-% \setCJKmonofont{KaiTi}[AutoFakeBold,AutoFakeSlant]
-
-% -----------------------  设置标题样式  -------------------------------------------
-\ctexset{
-    chapter = {
-        name = {,},
-        number = \arabic{chapter},
-        format = \centering\zihao{-2}\sffamily,
-        aftername = \ \ ,
-        beforeskip = 0.45\baselineskip,
-        afterskip = 1.0\baselineskip,
-        fixskip = true,
-        pagestyle = mainpage,
-    },
-    section = {
-        format = \raggedright\zihao{-3}\sffamily,
-        aftername = \ \ ,
-        beforeskip = 1.0\baselineskip,
-        afterskip = 1.0\baselineskip,
-        fixskip = true,
-    },
-    subsection = {
-        format = \raggedright\zihao{4}\sffamily,
-        aftername = \ \ ,
-        beforeskip = 0.75\baselineskip,
-        afterskip = 0.55\baselineskip,
-        fixskip = true,
-    },
-    subsubsection = {
-        format = \raggedright\zihao{4}\sffamily,
-        aftername = \ \ ,
-        beforeskip = 0.75\baselineskip,
-        afterskip = 0.55\baselineskip,
-        fixskip = true,
-    }
-}
-
-% -----------------------  设置页眉页脚  -------------------------------------------
-\newcommand{\doctype}{宁波大学\@college 本科毕业设计（论文）}
-\fancypagestyle{titlepage}{
-    \fancyhf{}
-    \renewcommand{\headrulewidth}{0pt}
-}
-
-\fancypagestyle{tablepage}{
-    \fancyhf{}
-    \fancyhead[C]{\ifodd\value{page}\zihao{-5}\doctype\else\zihao{-5}\@title\fi}
-    \renewcommand{\headrulewidth}{0.4pt}
-}
-
-\fancypagestyle{mainpage}{
-    \fancyhf{}
-    \fancyhead[C]{\ifodd\value{page}\zihao{-5}\doctype\else\zihao{-5}\@title\fi}
-    \renewcommand{\headrulewidth}{0.4pt}
-    \fancyfoot[C]{\thepage}
-}
-
-%---------------------------- 封面 ---------------------------------------------
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% 绘制内置矢量图标
 
 \RequirePackage{tikz}
-
-\renewcommand\maketitle{
-\pagestyle{titlepage}
-\newgeometry{left=2.5cm,right=2.5cm,top=3cm,bottom=3cm}
-
-\makebox[1em][s]{\ \hfill}
-
-\vspace{-8pt}
-
-\begin{center}
-%\includegraphics[width=\textwidth]{figures/NBUlogo.pdf}
 \definecolor{cb24d38}{RGB}{178,77,56}
 \usetikzlibrary{decorations.text}
-% 宁
+
 \newcommand\ning{(475.6680,149.0550) .. controls (491.8950,164.1050) and
       (449.3480,160.8480) .. (460.7030,182.4690) .. controls (461.7270,200.1130) and
       (466.9960,237.5900) .. (438.7230,219.8360) .. controls (426.1680,205.2420) and
@@ -214,8 +118,15 @@
       (1036.1130,98.3010) .. controls (1038.7810,69.9530) and (1019.2660,112.9220) .. 
       (1024.8360,119.9450) -- cycle}
       
-      
+\newcommand\nbugate{
+\fill[cb24d38] (-8,-68)--(-8,-16)--(-24,-16)--(-24,44)--(-48,44)--(-48,-47)--cycle 
+(8,-68)--(8,-16)--(24,-16)--(24,44)--(48,44)--(48,-47)--cycle;
+\draw[cb24d38,line width=1.1pt] (-20,34.3)--(20,34.3) (-20,42)--(20,42)  (-34,49.6)--(34,49.6);
+\draw[cb24d38,line width=1.5pt] (-54,58)--(54,58);
+}
 
+%% 宁波大学校徽和毛笔字
+\newcommand\NBUlogostring{
 \begin{tikzpicture}[y=1pt, x=1pt, yscale=-1,scale=0.295]
 % 宁波大学
 \fill[cb24d38,shift={(-70,142)},scale=0.26,rotate=-29]\ning;
@@ -233,13 +144,114 @@
 \path [decorate] (176:\r) arc [start angle=176,end angle=4,x radius=\r,y radius=\r];
 \draw[cb24d38,line width=3.5pt] (0,0) circle(159.5);
 \draw[cb24d38,line width=3.25pt] (0,0) circle(94);
-\fill[cb24d38] (-8,-68)--(-8,-16)--(-24,-16)--(-24,44)--(-48,44)--(-48,-47)--cycle 
-(8,-68)--(8,-16)--(24,-16)--(24,44)--(48,44)--(48,-47)--cycle;
-\draw[cb24d38,line width=1.1pt] (-20,34.3)--(20,34.3) (-20,42)--(20,42)  (-34,49.6)--(34,49.6);
-\draw[cb24d38,line width=1.5pt] (-54,58)--(54,58);
+\nbugate
 \end{scope}
 \end{tikzpicture}
+}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\RequirePackage{geometry}
+\geometry{a4paper,left=2.5cm,right=2.0cm,top=2.5cm,bottom=2.0cm}
+\setlength{\headheight}{16pt}
+\setlength{\headsep}{22pt}
+\linespread{1.6}
+
+\RequirePackage{graphicx}
+\graphicspath{{figures/}}
+\RequirePackage{fancyhdr}
+\RequirePackage{setspace}
+\RequirePackage{fontspec}
+\RequirePackage{xeCJK}
+
+\newcommand{\supervisor}[1]{\gdef\@supervisor{#1}}
+\newcommand{\etitle}[1]{\gdef\@etitle{#1}}
+\newcommand{\college}[1]{\gdef\@college{#1}}
+\newcommand{\major}[1]{\gdef\@major{#1}}
+\newcommand{\class}[1]{\gdef\@class{#1}}
+\newcommand{\studentID}[1]{\gdef\@studentID{#1}}
+
+\def\theetitle{\@etitle}
+\def\thetitle{\@title}
+\def\theauthor{\@author}
+\def\thecollege{\@college}
+
+% -------------------------  设置字体  -------------------------------------------
+% 设置宋体、黑体、楷体，以支持伪加粗，伪斜体
+\newCJKfontfamily[zhkaiti]\kaiti[Path=fonts/,BoldFont =FZCKJW.TTF]{FZHTK.TTF}
+% \setCJKmainfont{SimSun}[AutoFakeBold=2.5,AutoFakeSlant]
+% \setCJKsansfont{SimHei}[AutoFakeBold,AutoFakeSlant]
+% \setCJKmonofont{KaiTi}[AutoFakeBold,AutoFakeSlant]
+
+% -----------------------  设置标题样式  -------------------------------------------
+\ctexset{
+    chapter = {
+        name = {,},
+        number = \arabic{chapter},
+        format = \centering\zihao{-2}\sffamily,
+        aftername = \ \ ,
+        beforeskip = 0.45\baselineskip,
+        afterskip = 1.0\baselineskip,
+        fixskip = true,
+        pagestyle = mainpage,
+    },
+    section = {
+        format = \raggedright\zihao{-3}\sffamily,
+        aftername = \ \ ,
+        beforeskip = 1.0\baselineskip,
+        afterskip = 1.0\baselineskip,
+        fixskip = true,
+    },
+    subsection = {
+        format = \raggedright\zihao{4}\sffamily,
+        aftername = \ \ ,
+        beforeskip = 0.75\baselineskip,
+        afterskip = 0.55\baselineskip,
+        fixskip = true,
+    },
+    subsubsection = {
+        format = \raggedright\zihao{4}\sffamily,
+        aftername = \ \ ,
+        beforeskip = 0.75\baselineskip,
+        afterskip = 0.55\baselineskip,
+        fixskip = true,
+    }
+}
+
+% -----------------------  设置页眉页脚  -------------------------------------------
+\newcommand{\doctype}{宁波大学\@college 本科毕业设计（论文）}
+\fancypagestyle{titlepage}{
+    \fancyhf{}
+    \renewcommand{\headrulewidth}{0pt}
+}
+
+\fancypagestyle{tablepage}{
+    \fancyhf{}
+    \fancyhead[C]{\ifodd\value{page}\zihao{-5}\doctype\else\zihao{-5}\@title\fi}
+    \renewcommand{\headrulewidth}{0.4pt}
+}
+
+\fancypagestyle{mainpage}{
+    \fancyhf{}
+    \fancyhead[C]{\ifodd\value{page}\zihao{-5}\doctype\else\zihao{-5}\@title\fi}
+    \renewcommand{\headrulewidth}{0.4pt}
+    \fancyfoot[C]{\thepage}
+}
+
+%---------------------------- 封面 ---------------------------------------------
+
+\renewcommand\maketitle{
+\pagestyle{titlepage}
+\newgeometry{left=2.5cm,right=2.5cm,top=3cm,bottom=3cm}
+
+\makebox[1em][s]{\ \hfill}
+
+\vspace{-8pt}
+
+\begin{center}
+%\includegraphics[width=\textwidth]{figures/NBUlogo.pdf}
+\NBUlogostring
 %%%
     \vspace{46pt}
 
@@ -510,7 +522,6 @@
     }%
   \endgroup
 }
-
 
 % -------------------------- 常用宏包 ---------------------------
 
