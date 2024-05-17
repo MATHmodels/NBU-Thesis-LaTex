@@ -297,7 +297,6 @@
     \pagestyle{mainpage}
     \oldtableofcontents
     \cleardoublepage
-    \pagestyle{plain} % 恢复到默认的页码样式
 }
 
 % -----------------------承诺页-------------------------------------------
