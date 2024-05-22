@@ -8,9 +8,9 @@
 %% -------------------------------------------------------------------
 %% GB/T 7714 BibTeX Style
 %% https://github.com/zepinglee/gbt7714-bibtex-style
-%% Version: 2022/10/03 v2.1.5
+%% Version: 2024/03/08 v2.1.6
 %% -------------------------------------------------------------------
-%% Copyright (C) 2016--2022 by Zeping Lee <zepinglee AT gmail.com>
+%% Copyright (C) 2016--2024 by Zeping Lee <zepinglee AT gmail.com>
 %% -------------------------------------------------------------------
 %% This file may be distributed and/or modified under the
 %% conditions of the LaTeX Project Public License, either version 1.3c
@@ -39,6 +39,7 @@ INTEGERS {
   show.medium.type
   short.journal
   italic.journal
+  link.journal
   bold.journal.volume
   show.missing.address.publisher
   space.before.pages
@@ -63,7 +64,7 @@ FUNCTION {load.config}
   #1 'citation.et.al.use.first :=
   #4 'bibliography.et.al.min :=
   #3 'bibliography.et.al.use.first :=
-  #0 'uppercase.name :=
+  #1 'uppercase.name :=
   #0 'terms.in.macro :=
   #0 'year.after.author :=
   #1 'period.after.author :=
@@ -78,6 +79,7 @@ FUNCTION {load.config}
   "slash" 'component.part.label :=
   #0 'short.journal :=
   #0 'italic.journal :=
+  #0 'link.journal :=
   #0 'bold.journal.volume :=
   #0 'show.missing.address.publisher :=
   #1 'space.before.pages :=
@@ -590,7 +592,11 @@ FUNCTION {format.name}
     { bbl.et.al }
     { t get.str.lang 'name.lang :=
       name.lang lang.en =
-        { t #1 "{vv~}{ll}{ f{~}}" 
+        { t #1 "{vv~}{ll}{ f{~}}" format.name$
+          uppercase.name
+            { "u" change.case$ }
+            'skip$
+          if$
           t #1 "{, jj}" format.name$ *
         }
         { t #1 "{ll}{ff}" format.name$ }
@@ -731,7 +737,7 @@ FUNCTION {editor.full}
 
 FUNCTION {make.full.names}
 { type$ "book" =
-  type$ "inbook" =
+  type$ "inbook" = booktitle empty$ not and
   or
     'author.editor.full
     { type$ "collection" =
@@ -1053,7 +1059,7 @@ FUNCTION {get.journal.title}
 }
 
 FUNCTION {check.arxiv.preprint}
-{ #1 #5 substring$ "l" change.case$ "arxiv" =
+{ #1 #5 substring$ purify$ "l" change.case$ "arxiv" =
     { #1 }
     { #0 }
   if$
@@ -1064,6 +1070,10 @@ FUNCTION {format.journal}
   duplicate$ empty$ not
     { italic.journal entry.lang lang.en = and
         'emphasize
+        'skip$
+      if$
+      link.journal
+        'add.link
         'skip$
       if$
     }
@@ -1294,7 +1304,7 @@ FUNCTION {extract.after.slash}
 
 FUNCTION {format.year}
 { year empty$ not
-    { year extract.before.slash extra.label * }
+    { year extra.label * }
     { date empty$ not
         { date extract.before.dash extra.label * }
         { entry.is.electronic not
@@ -1962,6 +1972,10 @@ FUNCTION {preprint}
   format.urldate "" output.after
   output.eprint
   output.url
+  show.preprint not eprint empty$ or
+    'output.doi
+    'skip$
+  if$
   new.block
   format.note output
   fin.entry
@@ -2026,7 +2040,12 @@ FUNCTION {dataset}
   electronic
 }
 
-FUNCTION {inbook} { book }
+FUNCTION {inbook} {
+  booktitle empty$
+    'book
+    'incollection
+  if$
+}
 
 FUNCTION {inproceedings}
 { "C" set.entry.mark
@@ -2267,7 +2286,7 @@ FUNCTION {editor.key.organization.label}
 FUNCTION {calc.short.authors}
 { "" 'short.label :=
   type$ "book" =
-  type$ "inbook" =
+  type$ "inbook" = booktitle empty$ not and
   or
     'author.editor.key.label
     { type$ "collection" =
