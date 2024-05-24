@@ -128,20 +128,30 @@
 %% 宁波大学校徽和毛笔字
 \newcommand\NBUlogostring{
 \begin{tikzpicture}[y=1pt, x=1pt, yscale=-1,scale=0.295]
+
+\clip (-5,-5) rectangle++(1090,340);
+
 % 宁波大学
-\node[font=\bfseries\kaiti,scale=5.2,opacity=0] at (450,125) {宁};
-\node[font=\bfseries\kaiti,scale=4.8,opacity=0] at (650,125) {波};
-\node[font=\bfseries\kaiti,scale=3.8,opacity=0] at (840,135) {大};
-\node[font=\bfseries\kaiti,scale=4,opacity=0] at (1030,135) {学};
+\node[font=\bfseries\kaiti,scale=4.7,yscale=1.20,opacity=0] at (455,122) {宁};
+\node[font=\bfseries\kaiti,scale=3.8,yscale=1.20,opacity=0] at (651,130) {波};
+\node[font=\bfseries\kaiti,scale=2.8,yscale=1.34,opacity=0] at (833,138) {大};
+\node[font=\bfseries\kaiti,scale=4.0,yscale=1.22,opacity=0] at (1017,135) {学};
+
+\node[font=\bfseries\kaiti,scale=1.1,yscale=1.20,opacity=0,rotate=29] at (48,112) {宁};
+\node[font=\bfseries\kaiti,scale=1.1,yscale=1.20,opacity=0,rotate=15] at (110,51) {波};
+\node[font=\bfseries\kaiti,scale=1.1,yscale=1.20,opacity=0,rotate=-12] at (208,51) {大};
+\node[font=\bfseries\kaiti,scale=1.1,yscale=1.20,opacity=0,rotate=-22] at (270,112) {学};
 
 \fill[cb24d38,shift={(-70,142)},scale=0.26,rotate=-29]\ning;
 \fill[cb24d38,shift={(-59,62)},scale=0.26,rotate=-15]\bo;
 \fill[cb24d38,shift={(2.2,-31)},scale=0.26,rotate=12]\da;
 \fill[cb24d38,shift={(39,-29)},scale=0.26,rotate=22]\xue;
+
+
 % 宁波大学
 \fill\ning\bo\da\xue;
-\node[font=\sffamily\bfseries\zihao{-2},yscale=1.25,xscale=1] at (522,281){NINGBO};
-\node[font=\sffamily\bfseries\zihao{-2},yscale=1.25,xscale=1] at (889,281){UNIVERSITY};
+\node[font=\sffamily\bfseries\zihao{-2},yscale=1.25,xscale=1.03] at (519,281){NINGBO};
+\node[font=\sffamily\bfseries\zihao{-2},yscale=1.25,xscale=1.03] at (882,281){UNIVERSITY};
 
 \begin{scope}[shift={(164,164.5)}]
 \def\r{143}
@@ -255,7 +265,6 @@
 \vspace{-8pt}
 
 \begin{center}
-%\includegraphics[width=\textwidth]{figures/NBUlogo.pdf}
 \NBUlogostring
 %%%
     \vspace{46pt}
