@@ -194,7 +194,7 @@
 
 % -------------------------  设置字体  -------------------------------------------
 % 设置宋体、黑体、楷体，以支持伪加粗，伪斜体
-%\newCJKfontfamily[zhkaiti]\kaiti[Path=fonts/,BoldFont =FZCKJW.TTF]{FZHTK.TTF}
+%\newCJKfontfamily[zhkaiti]\kaiti[Path=fonts/,BoldFont =FZCKJW.TTF]{FZHTK.TTF} % 可自行下载FZ字体替换
 \newCJKfontfamily[zhkaiti]\kaiti[Path=fonts/,AutoFakeBold]{AR-PL-KaitiM-GB.ttf}
 
 % -----------------------  设置标题样式  -------------------------------------------
