@@ -132,15 +132,15 @@
 \clip (-5,-5) rectangle++(1090,340);
 
 % 宁波大学
-\node[font=\bfseries\kaiti,scale=4.7,yscale=1.20,opacity=0] at (455,122) {宁};
-\node[font=\bfseries\kaiti,scale=3.8,yscale=1.20,opacity=0] at (651,130) {波};
-\node[font=\bfseries\kaiti,scale=2.8,yscale=1.34,opacity=0] at (833,138) {大};
-\node[font=\bfseries\kaiti,scale=4.0,yscale=1.22,opacity=0] at (1017,135) {学};
+\node[scale=4.7,yscale=1.20,opacity=0] at (455,122) {宁};
+\node[scale=3.8,yscale=1.20,opacity=0] at (651,130) {波};
+\node[scale=2.8,yscale=1.34,opacity=0] at (833,138) {大};
+\node[scale=4.0,yscale=1.22,opacity=0] at (1017,135) {学};
 
-\node[font=\bfseries\kaiti,scale=1.1,yscale=1.20,opacity=0,rotate=29] at (48,112) {宁};
-\node[font=\bfseries\kaiti,scale=1.1,yscale=1.20,opacity=0,rotate=15] at (110,51) {波};
-\node[font=\bfseries\kaiti,scale=1.1,yscale=1.20,opacity=0,rotate=-12] at (208,51) {大};
-\node[font=\bfseries\kaiti,scale=1.1,yscale=1.20,opacity=0,rotate=-22] at (270,112) {学};
+\node[scale=1.1,yscale=1.20,opacity=0,rotate=29] at (48,112) {宁};
+\node[scale=1.1,yscale=1.20,opacity=0,rotate=15] at (110,51) {波};
+\node[scale=1.1,yscale=1.20,opacity=0,rotate=-12] at (208,51) {大};
+\node[scale=1.1,yscale=1.20,opacity=0,rotate=-22] at (270,112) {学};
 
 \fill[cb24d38,shift={(-70,142)},scale=0.26,rotate=-29]\ning;
 \fill[cb24d38,shift={(-59,62)},scale=0.26,rotate=-15]\bo;
@@ -194,10 +194,8 @@
 
 % -------------------------  设置字体  -------------------------------------------
 % 设置宋体、黑体、楷体，以支持伪加粗，伪斜体
-\newCJKfontfamily[zhkaiti]\kaiti[Path=fonts/,BoldFont =FZCKJW.TTF]{FZHTK.TTF}
-% \setCJKmainfont{SimSun}[AutoFakeBold=2.5,AutoFakeSlant]
-% \setCJKsansfont{SimHei}[AutoFakeBold,AutoFakeSlant]
-% \setCJKmonofont{KaiTi}[AutoFakeBold,AutoFakeSlant]
+%\newCJKfontfamily[zhkaiti]\kaiti[Path=fonts/,BoldFont =FZCKJW.TTF]{FZHTK.TTF}
+\newCJKfontfamily[zhkaiti]\kaiti[Path=fonts/,AutoFakeBold]{AR-PL-KaitiM-GB.ttf}
 
 % -----------------------  设置标题样式  -------------------------------------------
 \ctexset{
