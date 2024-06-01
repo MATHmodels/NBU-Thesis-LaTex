@@ -1,15 +1,106 @@
  % !Mode:: "TeX:UTF-8"
-% 宁波大学本科生毕业论文 LaTex 模板 V1.0, 2024/05/01
+ 
+ %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 宁波大学本科生毕业论文 LaTex 模板 V1.2, 2024/06/01
 % 作者：宁波大学，周吕文，zhoulvwen@nbu.edu.cn
 % 编译命令：xelatex -> bibtex -> xelatex -> xelatex
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{NBUThesis}[2024/03/27 Thesis Template of NBU]
+\ProvidesClass{NBUThesis}[2024/06/01 Thesis document class of NBU]
 \LoadClass[a4paper,zihao=-4,oneside,openany]{ctexbook}
+\RequirePackage{xeCJK}
+\RequirePackage{graphicx}
+\graphicspath{{figures/}}  % 默认图片目录
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% -------------------------定义命令 -------------------------------------------------
+% 作者、中文标题、日期都用默认命令 \author、\title、\date
+\newcommand{\supervisor}[1]{\newcommand\@supervisor{#1}} % 导师
+\newcommand{\etitle}[1]{\newcommand\@etitle{#1}}         % 英文标题
+\newcommand{\college}[1]{\newcommand\@college{#1}}       % 学院
+\newcommand{\major}[1]{\newcommand\@major{#1}}           % 专业
+\newcommand{\class}[1]{\newcommand\@class{#1}}           % 班级
+\newcommand{\studentID}[1]{\newcommand\@studentID{#1}}   % 学号命令
+
+% ------------------------- 页边距、行距等设置  ---------------------------------------
+\RequirePackage{geometry}
+\RequirePackage{setspace}
+\geometry{a4paper,left=2.5cm,right=2.0cm,top=2.5cm,bottom=2.0cm} % 设置页边距
+\setlength{\headheight}{16pt}       % 页眉的高度
+\setlength{\headsep}{22pt}          % 页眉与正文之间的距离
+\linespread{1.6}                    % 行距
+
+% -------------------------  设置字体  -------------------------------------------
+% 设置宋体、黑体、楷体，以支持伪加粗，伪斜体 % 可自行下载FZ字体替换
+\RequirePackage{fontspec}
+%\newCJKfontfamily[zhkaiti]\kaiti[Path=fonts/,BoldFont =FZCKJW.TTF]{FZHTK.TTF} 
+\newCJKfontfamily[zhkaiti]\kaiti[Path=fonts/,AutoFakeBold]{AR-PL-KaitiM-GB.ttf}
+
+% -----------------------  设置标题样式  -------------------------------------------
+\ctexset{
+    chapter = {
+        name = {,},
+        number = \arabic{chapter},
+        format = \centering\zihao{-2}\sffamily,
+        aftername = \ \ ,
+        beforeskip = 0.45\baselineskip,
+        afterskip = 1.0\baselineskip,
+        fixskip = true,
+        pagestyle = mainpage,
+    },
+    section = {
+        format = \raggedright\zihao{-3}\sffamily,
+        aftername = \ \ ,
+        beforeskip = 1.0\baselineskip,
+        afterskip = 1.0\baselineskip,
+        fixskip = true,
+    },
+    subsection = {
+        format = \raggedright\zihao{4}\sffamily,
+        aftername = \ \ ,
+        beforeskip = 0.75\baselineskip,
+        afterskip = 0.55\baselineskip,
+        fixskip = true,
+    },
+    subsubsection = {
+        format = \raggedright\zihao{4}\sffamily,
+        aftername = \ \ ,
+        beforeskip = 0.75\baselineskip,
+        afterskip = 0.55\baselineskip,
+        fixskip = true,
+    }
+}
+
+% -----------------------  设置页眉页脚  -------------------------------------------
+\RequirePackage{fancyhdr}
+
+\newcommand{\doctype}{宁波大学\@college 本科毕业设计（论文）}
+\fancypagestyle{titlepage}{
+    \fancyhf{}
+    \renewcommand{\headrulewidth}{0pt}
+    \setcounter{page}{0}
+}
+
+\fancypagestyle{commitmentpage}{
+    \fancyhf{}
+    \fancyhead[C]{\zihao{-5}\doctype}
+    \renewcommand{\headrulewidth}{0.4pt}
+    \setcounter{page}{0}
+}
+
+\fancypagestyle{mainpage}{
+    \fancyhf{}
+    \fancyhead[C]{\ifodd\value{page}\zihao{-5}\doctype\else\zihao{-5}\@title\fi}
+    \renewcommand{\headrulewidth}{0.4pt}
+    \fancyfoot[C]{\thepage}
+}
+
+\AtBeginDocument{%%% %%%\begin{document}后执行的命令
+    \frontmatter % book前导部分开始（包括：封面、独创性声明、中英文摘要、目录）
+    \pagenumbering{Roman} %论文前导部分（页码以 -I- 编号的部分）
+}
+%---------------------------- 封面 ---------------------------------------------
 %%% 绘制内置矢量图标
-
 \RequirePackage{tikz}
 \definecolor{cb24d38}{RGB}{178,77,56}
 \usetikzlibrary{decorations.text}
@@ -164,101 +255,13 @@
 \end{tikzpicture}
 }
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-
-\RequirePackage{geometry}
-\geometry{a4paper,left=2.5cm,right=2.0cm,top=2.5cm,bottom=2.0cm}
-\setlength{\headheight}{16pt}
-\setlength{\headsep}{22pt}
-\linespread{1.6}
-
-\RequirePackage{graphicx}
-\graphicspath{{figures/}}
-\RequirePackage{fancyhdr}
-\RequirePackage{setspace}
-\RequirePackage{fontspec}
-\RequirePackage{xeCJK}
-
-\newcommand{\supervisor}[1]{\gdef\@supervisor{#1}}
-\newcommand{\etitle}[1]{\gdef\@etitle{#1}}
-\newcommand{\college}[1]{\gdef\@college{#1}}
-\newcommand{\major}[1]{\gdef\@major{#1}}
-\newcommand{\class}[1]{\gdef\@class{#1}}
-\newcommand{\studentID}[1]{\gdef\@studentID{#1}}
-
-\def\theetitle{\@etitle}
-\def\thetitle{\@title}
-\def\theauthor{\@author}
-\def\thecollege{\@college}
-
-% -------------------------  设置字体  -------------------------------------------
-% 设置宋体、黑体、楷体，以支持伪加粗，伪斜体
-%\newCJKfontfamily[zhkaiti]\kaiti[Path=fonts/,BoldFont =FZCKJW.TTF]{FZHTK.TTF} % 可自行下载FZ字体替换
-\newCJKfontfamily[zhkaiti]\kaiti[Path=fonts/,AutoFakeBold]{AR-PL-KaitiM-GB.ttf}
-
-% -----------------------  设置标题样式  -------------------------------------------
-\ctexset{
-    chapter = {
-        name = {,},
-        number = \arabic{chapter},
-        format = \centering\zihao{-2}\sffamily,
-        aftername = \ \ ,
-        beforeskip = 0.45\baselineskip,
-        afterskip = 1.0\baselineskip,
-        fixskip = true,
-        pagestyle = mainpage,
-    },
-    section = {
-        format = \raggedright\zihao{-3}\sffamily,
-        aftername = \ \ ,
-        beforeskip = 1.0\baselineskip,
-        afterskip = 1.0\baselineskip,
-        fixskip = true,
-    },
-    subsection = {
-        format = \raggedright\zihao{4}\sffamily,
-        aftername = \ \ ,
-        beforeskip = 0.75\baselineskip,
-        afterskip = 0.55\baselineskip,
-        fixskip = true,
-    },
-    subsubsection = {
-        format = \raggedright\zihao{4}\sffamily,
-        aftername = \ \ ,
-        beforeskip = 0.75\baselineskip,
-        afterskip = 0.55\baselineskip,
-        fixskip = true,
-    }
-}
-
-% -----------------------  设置页眉页脚  -------------------------------------------
-\newcommand{\doctype}{宁波大学\@college 本科毕业设计（论文）}
-\fancypagestyle{titlepage}{
-    \fancyhf{}
-    \renewcommand{\headrulewidth}{0pt}
-}
-
-\fancypagestyle{tablepage}{
-    \fancyhf{}
-    \fancyhead[C]{\ifodd\value{page}\zihao{-5}\doctype\else\zihao{-5}\@title\fi}
-    \renewcommand{\headrulewidth}{0.4pt}
-}
-
-\fancypagestyle{mainpage}{
-    \fancyhf{}
-    \fancyhead[C]{\ifodd\value{page}\zihao{-5}\doctype\else\zihao{-5}\@title\fi}
-    \renewcommand{\headrulewidth}{0.4pt}
-    \fancyfoot[C]{\thepage}
-}
-
-%---------------------------- 封面 ---------------------------------------------
+%%%
 
 \renewcommand\maketitle{
 \pagestyle{titlepage}
 \newgeometry{left=2.5cm,right=2.5cm,top=3cm,bottom=3cm}
 
-\makebox[1em][s]{\ \hfill}
+\makebox[1em][s]{\hfill}
 
 \vspace{-8pt}
 
@@ -272,7 +275,7 @@
     \vspace{50pt}
 
     \begin{spacing}{1.56} 
-        \sffamily \bfseries \zihao{-2}  题目：\@title \par  \@etitle
+        \sffamily \bfseries \zihao{-2}  题目：\@title \par \@etitle
     \end{spacing}
     
     \vfill
@@ -305,7 +308,6 @@
 \let\oldtableofcontents\tableofcontents
 \renewcommand{\tableofcontents}{
     \cleardoublepage
-    \setcounter{page}{0}
     \pagestyle{mainpage}
     \oldtableofcontents
     \cleardoublepage
@@ -313,9 +315,9 @@
 
 % -----------------------承诺页-------------------------------------------
 \newcommand\commitment{
-\newpage
-
-\makebox[1em][s]{\ \hfill}
+\cleardoublepage
+\pagestyle{commitmentpage}
+\makebox[1em][s]{\hfill}
 
 \vspace{1.0em}
 
@@ -328,7 +330,7 @@
 
 \begin{spacing}{2.0}
 \zihao{4}
-我谨在此承诺：本人所写的毕业论文《\thetitle》的主体均系本人独立完成，没有抄袭行为，凡涉及其他作者的观点和材料，均作了注释，若有不实，后果由本人承担并愿接受校方的处分。
+我谨在此承诺：本人所写的毕业论文《\@title》的主体均系本人独立完成，没有抄袭行为，凡涉及其他作者的观点和材料，均作了注释，若有不实，后果由本人承担并愿接受校方的处分。
 \end{spacing}
 
 \vspace{2.4em}
@@ -340,6 +342,7 @@
 \vspace{0.2em}
 \makebox[3em][s]{\hspace{\fill}}年\makebox[2em][s]{\hspace{\fill}}月\makebox[2em][s]{\hspace{\fill}}日 \makebox[6.5em][s]{\hspace{\fill}}
 \end{flushright}
+\cleardoublepage
 }
 
 % -------------------------  摘要  -------------------------
@@ -378,9 +381,7 @@
 \newcommand{\keywordlistsep}[1]{#1}
 % 中文摘要环境
 \newenvironment{abstract}{
-   \pagenumbering{Roman}
-    %\tableformatset
-    \chapter*{\thetitle\\ \vspace{0.7em} 
+    \chapter*{\@title\\ \vspace{0.7em} 
 	摘\hspace{1em}要}
     \addcontentsline{toc}{chapter}{摘\hspace{1em}要}%
 	\chaptermark{摘\hspace{1em}要}
@@ -395,9 +396,7 @@
 }
 % 英文摘要环境
 \newenvironment{abstractEN}{
-    \pagenumbering{Roman}
-    %\tableformatset
-    \chapter*{\bfseries \theetitle\\ \vspace{0.7em} 
+    \chapter*{\bfseries\@etitle\\ \vspace{0.7em} 
 	Abstract}
     \addcontentsline{toc}{chapter}{Abstract}%
 	\chaptermark{Abstract}
@@ -406,7 +405,6 @@
     \renewcommand{\kwlabel}{{\kwlabelfmt \bfseries \zihao{5}
         \hspace{-1em} KEYWORDS\quad%
     }}
-    
 }{
   \par
   \tableformatreset
@@ -501,6 +499,7 @@
 \renewcommand{\lstlistingname}{\bf 代码}
 
 % -------------------------  致谢环境  -------------------------
+
 \makeatletter
 \newenvironment{acknowledgements}{
   \chapter*{致\hspace{1em}谢}
@@ -509,30 +508,6 @@
   \par
 }
 \makeatother
-
-%----------------------------------书脊-----------------------------
-
-\newcommand{\spine}{
-    \newgeometry{
-      vmargin = 3cm,
-      hmargin = 1cm,
-    }%
-    \thispagestyle{empty}%
-    \begingroup
-    \noindent\hfill
-    \rotatebox[origin=lt]{-90}{%
-      \makebox[\textheight]{
-        \addCJKfontfeatures*{RawFeature={vertical}}%
-        \hfill
-        \thetitle
-        \hfill
-        \theauthor
-        \hfill
-宁波大学\thecollege
-      }%
-    }%
-  \endgroup
-}
 
 % -------------------------- 常用宏包 ---------------------------
 
