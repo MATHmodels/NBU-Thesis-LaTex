@@ -1,10 +1,10 @@
  % !Mode:: "TeX:UTF-8"
  
- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+ %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % 宁波大学本科生毕业论文 LaTex 模板 V1.2, 2024/06/01
 % 作者：宁波大学，周吕文，zhoulvwen@nbu.edu.cn
 % 编译命令：xelatex -> bibtex -> xelatex -> xelatex
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{NBUThesis}[2024/06/01 Thesis document class of NBU]
@@ -13,7 +13,7 @@
 \RequirePackage{graphicx}
 \graphicspath{{figures/}}  % 默认图片目录
 
-% -------------------------定义命令 -------------------------------------------------
+% -------------------------定义命令 ----------------------------------------------
 % 作者、中文标题、日期都用默认命令 \author、\title、\date
 \newcommand{\supervisor}[1]{\newcommand\@supervisor{#1}} % 导师
 \newcommand{\etitle}[1]{\newcommand\@etitle{#1}}         % 英文标题
@@ -299,7 +299,7 @@
 \restoregeometry
 }
 
-% -------------------------  目录  ----------------------------------------
+% -------------------------  目录  ---------------------------------------------
 \renewcommand\contentsname{\zihao{-2}{目\hspace{1em}录}}
 
 \newcommand{\tableformatset}{\ctexset{chapter/beforeskip=0.2\baselineskip}}
@@ -313,7 +313,7 @@
     \cleardoublepage
 }
 
-% -----------------------承诺页-------------------------------------------
+% -----------------------承诺页--------------------------------------------------
 \newcommand\commitment{
 \cleardoublepage
 \pagestyle{commitmentpage}
@@ -345,7 +345,7 @@
 \cleardoublepage
 }
 
-% -------------------------  摘要  -------------------------
+% -------------------------  摘要  ---------------------------------------------
 
 \RequirePackage{mfirstuc}
 % 关键字格式化输出
@@ -410,7 +410,7 @@
   \tableformatreset
 }
 
-% -------------------------  图表格式  ------------------------- 
+% -------------------------  图表格式  -------------------------------------------
 % caption标签设置
 \RequirePackage{longtable} % 长表格
 \RequirePackage{multirow}
@@ -440,7 +440,7 @@
 \renewcommand{\thesubfigure}{(\alph{subfigure})}
 \renewcommand{\thesubtable}{(\alph{subtable})}
 
-% --------------------------  链接高亮  --------------------------
+% --------------------------  链接高亮  ------------------------------------------
 \RequirePackage{footnotebackref}
 \definecolor{citecolor}{rgb}{0.0, 0.50, 0.0}
 \definecolor{linkcolor}{rgb}{0.75, 0.0, 0.0}
@@ -457,12 +457,12 @@
   plainpages=false
   }
 
-% -------------------------  参考文献  -------------------------
+% -------------------------  参考文献  -------------------------------------------
 
 \RequirePackage[square,super,comma,sort&compress]{natbib}
 \newcommand{\Cite}[1]{\scalebox{1.3}[1.3]{\raisebox{-0.65ex}{\cite{#1}}}}
 
-% ---------------------------代码环境----------------------------------
+% ---------------------------代码环境---------------------------------------------
 
 \RequirePackage{listings}
 \definecolor{MyDarkGreen}{rgb}{0.0,0.3,0.0}
@@ -498,7 +498,7 @@
 \newcommand{\mline}[1]{\lstinline[basicstyle=\ttfamily,columns=fullflexible]|#1|}
 \renewcommand{\lstlistingname}{\bf 代码}
 
-% -------------------------  致谢环境  -------------------------
+% -------------------------  致谢环境  -------------------------------------------
 
 \makeatletter
 \newenvironment{acknowledgements}{
@@ -509,7 +509,7 @@
 }
 \makeatother
 
-% -------------------------- 常用宏包 ---------------------------
+% -------------------------- 常用宏包 --------------------------------------------
 
 \RequirePackage{amsmath,amsfonts,amssymb}
 \RequirePackage{bm}
