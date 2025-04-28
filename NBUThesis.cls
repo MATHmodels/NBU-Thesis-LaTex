@@ -1,7 +1,7 @@
  % !Mode:: "TeX:UTF-8"
  
- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% 宁波大学本科生毕业论文 LaTex 模板 V1.2, 2024/06/01
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 宁波大学本科生毕业论文 LaTex 模板 V1.3, 2025/04/28
 % 作者：宁波大学，周吕文，zhoulvwen@nbu.edu.cn
 % 编译命令：xelatex -> bibtex -> xelatex -> xelatex
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -9,10 +9,17 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{NBUThesis}[2024/06/01 Thesis document class of NBU]
 \LoadClass[a4paper,zihao=-4,oneside,openany]{ctexbook}
+
+% 声明选项 ZhChapter
+\DeclareOption{ZhChapter}{\def\@chapterstyle{zhchapter}}
+% 默认选项（如果没有指定 ZhChapter）
+\DeclareOption*{\PassOptionsToClass{\CurrentOption}{ctexbook}}
+% 处理选项
+\ProcessOptions\relax
+
 \RequirePackage{xeCJK}
 \RequirePackage{graphicx}
 \graphicspath{{figures/}}  % 默认图片目录
-
 % -------------------------定义命令 ----------------------------------------------
 % 作者、中文标题、日期都用默认命令 \author、\title、\date
 \newcommand{\supervisor}[1]{\newcommand\@supervisor{#1}} % 导师
@@ -37,6 +44,8 @@
 \newCJKfontfamily[zhkaiti]\kaiti[Path=fonts/,AutoFakeBold]{AR-PL-KaitiM-GB.ttf}
 
 % -----------------------  设置标题样式  -------------------------------------------
+\ifx\@chapterstyle\undefined
+% 英文风格的章标题　“1 章标题”
 \ctexset{
     chapter = {
         name = {,},
@@ -47,7 +56,25 @@
         afterskip = 1.0\baselineskip,
         fixskip = true,
         pagestyle = mainpage,
-    },
+    }
+}
+\else
+% 中文风格的章标题　“第一章 章标题”
+\ctexset{
+    chapter = {
+        number=\chinese{chapter},
+        name   = {第,章},
+        format = \zihao{-2}\heiti\centering,
+        aftername = \ \ ,
+        beforeskip = 0.45\baselineskip,
+        afterskip = 1.0\baselineskip,
+        fixskip = true,
+        pagestyle = mainpage,     
+    }
+}
+\fi
+
+\ctexset{
     section = {
         format = \raggedright\zihao{-3}\sffamily,
         aftername = \ \ ,
