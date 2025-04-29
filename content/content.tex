@@ -23,6 +23,13 @@ content 文件夹 & appendix.tex         & 附录                     \\ \hline
 
 无需也不要改变、移动上述文档的位置。
 
+\section{标题风格}
+宁波大学各学院本科毕业论文的模板存在一些差异，最明显的是章的标题风格。可以使用“\verb|ZhChapter|”选项切换两种风格：
+\begin{itemize}
+\item \verb|\documentclass{NBUThesis}|：章标题效果为“\textbf{1~~模板结构}”
+\item \verb|\documentclass[ZhChapter]{NBUThesis}|：章标题效果为“\textbf{第一章~~模板结构}”
+\end{itemize}
+
 \section{使用步骤}
 
 \begin{enumerate}
@@ -76,48 +83,52 @@ content 文件夹 & appendix.tex         & 附录                     \\ \hline
 
 \chapter{列表环境}
 
-圆点编号
+缘分来了真的挡也挡不住。讲一个真实的故事，2024 年大三，暑假快结束时从北京坐高铁回学校，斜对面坐了一个很乖巧的小女生，眼睛大大的，脸圆圆的，非常可爱，怀里抱着一个小熊书包。我有点无聊，于是玩起了手机上的五子棋小游戏。这个时候女生说话了，说她也喜欢下五子棋，并且很厉害。然后我们一起玩了几局五子棋小游戏，一边玩一边聊天。她刚高考完，马上上大一，安徽人，小我四岁，趁着刚开学前有时间，她爸妈带着她和她弟弟一起去北京玩，去了故宫和八达岭，刚好我也去过，于是聊了很多。
+
+凌晨天快亮的时候我醒了，发现她靠在我肩膀上睡的觉。我先到站，她和她家人还有两站，我想留个联系方式，于是我们加了微信。两天后她给我发来了消息，然后我们互相介绍对方的家乡的样子，发生活照片，说了很多话。后来开学了，我问她是哪个学校的，她说她是宁波大学的。宁波大学，简称“宁大”，位于浙江省宁波市。由浙江省人民政府、宁波市人民政府共同举办的省属普通高等学校。是国家“双一流”建设高校、省部市共建高校、浙江省首批重点建设高校、浙江省高水平大学建设高校、“浙江省国际化特色高校”首批建设单位和宁波市国际人文交流基地。学校于 1986 年由包玉刚捐资创立，并于 1992 年被列入中国高校招生第一批录取院校。1996年，原宁波大学、宁波师范学院和浙江水产学院宁波分院三校合并，组建新的宁波大学。截至 2025 年 3 月，宁波大学设有 23 个学院：
 \begin{itemize}
- \item XXXXXXXXXX
- \item XXXXXXXXXX
- \item XXXXXXXXXX
+\item 机械工程与力学学院
+\item 物理科学与技术学院
+\item 数学与统计学院
+\item ...
 \end{itemize}
-
-数字编号
+拥有 6 家附属医院：
 \begin{enumerate}
- \item XXXXXXXXXX
- \item XXXXXXXXXX
- \item XXXXXXXXXX
+ \item 宁波大学附属第一医院
+ \item 宁波大学附属妇女儿童医院
+ \item 宁波大学附属康宁医院
+ \item 宁波大学附属李惠利医院
+ \item 宁波大学附属人民医院
+ \item 宁波大学附属阳明医院
 \end{enumerate}
-
-罗马编号
+学校现有学生情况如下：
 \begin{enumerate}[label=(\roman*)]
- \item XXXXXXXXXX
- \item XXXXXXXXXX
- \item XXXXXXXXXX
+ \item 全日制本科生 21944 名
+ \item 硕士研究生 12301 名
+ \item 博士研究生 669 名
+ \item 在校学生中国际学生 894 名
 \end{enumerate}
-
-括号编号
+宁波大学现有学科专业情况如下：
+\begin{enumerate}[label=\alph*)]
+ \item 一级学科博士学位授权点 13 个
+ \item 专业学位博士点 1 个
+ \item 博士后科研流动站 9 个
+ \item 一级学科硕士学位授权点 32 个
+ \item 硕士专业学位授权点 31 个
+ \item 本科招生专业 59 个
+\end{enumerate}
+以上文字展示了圆点编号、数字编号、罗马编号和小字母编号的列表环境。此外，还可根据需要选用括号编号：
 \begin{enumerate}[label=(\arabic*)]
  \item XXXXXXXXXX
  \item XXXXXXXXXX
  \item XXXXXXXXXX
 \end{enumerate}
-
-半括号编号
+半括号编号：
 \begin{enumerate}[label=\arabic*)]
  \item XXXXXXXXXX
  \item XXXXXXXXXX
  \item XXXXXXXXXX
 \end{enumerate}
-
-小字母编号
-\begin{enumerate}[label=\alph*)]
- \item XXXXXXXXXX
- \item XXXXXXXXXX
- \item XXXXXXXXXX
-\end{enumerate}
-
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \chapter{公式环境}
@@ -159,11 +170,18 @@ P & = UI \\
 \[
 f(x) =
     \begin{cases}
-        0 &  x \text{为无理数} ,\\
-        1 &  x \text{为有理数} .
+        0 &  x\leq 0\\
+        1 &  x>0
     \end{cases}
 \]
-在数学环境里面，字体用的是数学字体，一般与正文字体不同。假如要公式里面有个别文字，则需要把这部分放在 \verb|text| 环境里面，即 \verb|\text{文本环境}| 。
+类似的校果也可以用 \verb|array| 环境实现：
+\begin{equation}\label{eq:array}
+\left.\begin{array}{c}
+\displaystyle\lim_{\text{\textcolor{red}{一点}}\rightarrow 0} (\text{比你帅\textcolor{red}{一点}的人}) = \text{有女朋友}\\
+\displaystyle\lim_{\text{\textcolor{red}{一点}}\rightarrow 0} (\text{比你丑\textcolor{red}{一点}的人}) = \text{有女朋友}
+\end{array}\right\} \Longrightarrow \text{你该有女朋友（夹逼定理）}
+\end{equation}
+式 (\ref{eq:array}) 中包含了一些文字。在数学环境里面，通常用的是数学字体，一般与正文字体不同。假如要公式里面有个别文字，则需要把这部分放在 \verb|text| 环境里面，即 \verb|\text{文本环境}| 。
 
 公式中个别需要加粗的字母可以用 \verb|$\bm{math symbol}$| 。如 $ \alpha a\bm{\alpha a} $ 。
 
@@ -181,11 +199,11 @@ f(x) =
 下面是一个插图的示例代码。
 \begin{figure}[!htb]
   \centering
-  \includegraphics[width=0.4\textwidth]{Risa.jpg}
-  \caption{一个纯洁漂亮的女孩子}
-  \label{fig:Risa}
+  \includegraphics[width=0.5\textwidth]{tulip.jpg}
+  \caption{我倒不是喜欢白色郁金香，只是宁大的花开的正艳，我不去欣赏，倒显得我不解风情}
+  \label{fig:tulip}
 \end{figure}
-注意 \verb|figure| 环境是一个浮动体环境，图片的最终位置可能会跑动。\verb|[!h]| 中的 \verb|h| 是 here 的意思， \verb|!| 表示忽略一些浮动体的严格规则。另外里面还可以加上 \verb|btp| 选项，它们分别是 bottom, top, page 的意思。只要这几个参数在花括号里面，作用是不分先后顺序的。page 在这里表示浮动页。\verb|width=0.6\textwidth| 表示设计图片的宽度为文本的 0.6 倍。\verb|\label{fig:Risa}| 是一个标签，供交叉引用使用的。例如引用图片 \verb|\ref{fig:Risa}| 的实际效果是 \ref{fig:Risa}。图片是自动编号的，比起手动编号，它更加高效。\verb|label| 要确保唯一，命名方式推荐用图片的命名方式。
+注意 \verb|figure| 环境是一个浮动体环境，图片的最终位置可能会跑动。\verb|[!h]| 中的 \verb|h| 是 here 的意思， \verb|!| 表示忽略一些浮动体的严格规则。另外里面还可以加上 \verb|btp| 选项，它们分别是 bottom, top, page 的意思。只要这几个参数在花括号里面，作用是不分先后顺序的。page 在这里表示浮动页。\verb|width=0.5\textwidth| 表示设计图片的宽度为文本的 0.5 倍。\verb|\label{fig:tulip}| 是一个标签，供交叉引用使用的。例如引用图片 \verb|\ref{fig:tulip}| 的实际效果是 \ref{fig:tulip}。图片是自动编号的，比起手动编号，它更加高效。\verb|label| 要确保唯一，命名方式推荐用图片的命名方式。
 
 图片并排的需求解决方式多种多样，下面用 \verb|minipage| 环境来展示一个简单的例子。注意，以下例子用到了 \verb|subcaption| 命令，需要加载 subcaption 宏包。
 \begin{figure}[!htb]
@@ -250,7 +268,7 @@ f(x) =
 table 环境是一个将表格嵌入文本的浮动环境。tabular 环境的必选参数由每列对应一个格式字符所组成：\verb|c| 表示居中，\verb|l| 表示左对齐，\verb|r| 表示右对齐，其总个数应与表的列数相同。此外，\verb|@{文本}| 可以出现在任意两个上述的列格式之间，其中的文本将被插入每一行的同一位置。表格的各行以 \verb|\\| 分隔，同一行的各列则以\&分隔。 \verb|\toprule| 、\verb|\midrule| 和 \verb|\bottomrule| 三个命令是由booktabs宏包提供的，其中 \verb|\toprule| 和 \verb|\bottomrule| 分别用来绘制表格的第一条（表格最顶部）和第三条（表格最底部）水平线，\verb|\midrule| 用来绘制第二条（表头之下）水平线，且第一条和第三条水平线的线宽为 1.5pt，第二条水平线的线宽为 1pt 。引用方法与图片的相同。非三线表参考表 \ref{tab:Table-example}。
 \begin{table}[!htb]
 \centering
-\caption{Table example}\label{tab:Table-example}
+\caption{非三线表示例}\label{tab:Table-example}
 \begin{tabular}{|c|c|c|c|c|}
 \hline 
  & AAAAAA & BBBBBB & CCCCCC & DDDDDD\tabularnewline
